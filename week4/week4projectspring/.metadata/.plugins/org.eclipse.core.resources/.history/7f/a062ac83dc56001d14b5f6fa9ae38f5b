@@ -1,0 +1,80 @@
+package kodlama.io.Devs.dataAccess.concretes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kodlama.io.Devs.dataAccess.abstracts.IProgrammingLanguageRepository;
+import kodlama.io.Devs.entities.concretes.ProgrammingLanguage;
+
+@Service
+public class inMemoryProgrammingLanguageRepository implements IProgrammingLanguageRepository {
+
+	List<ProgrammingLanguage> languages;
+
+	@Autowired
+	public inMemoryProgrammingLanguageRepository() {
+		languages = new ArrayList<ProgrammingLanguage>();
+		languages.add(new ProgrammingLanguage(1, "C#"));
+		languages.add(new ProgrammingLanguage(2, "Java"));
+		languages.add(new ProgrammingLanguage(3, "Python"));
+	}
+
+	@Override
+	public List<ProgrammingLanguage> getAll() {
+		for (ProgrammingLanguage programmingLanguage : languages) {
+			programmingLanguage.getName();
+		}
+		return languages;
+	}
+
+	@Override
+	public ProgrammingLanguage getById(int id) {
+		for (ProgrammingLanguage programmingLanguage : languages) {
+			if (programmingLanguage.getId()==id) {
+				programmingLanguage.getId();
+			}
+		}
+		return getById(id);
+	}
+
+	@Override
+	public void add(ProgrammingLanguage language) throws Exception {
+		isNameExist(language);
+		languages.add(language);
+		
+		
+		
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update(ProgrammingLanguage language, int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean isNameExist(ProgrammingLanguage language) throws Exception {
+		//boolean isThere = false;
+		for (ProgrammingLanguage programmingLanguage : languages) {
+			if(language.getName().equals(programmingLanguage.getName())) {
+				 return true;
+			}	
+		}
+		if (!isNameExist(language)) {
+			System.out.println("Programlama dili eklendi: " + language);
+		} else {
+			throw new Exception("Programlama dili tekrar edemez");
+		}
+		return false;
+	}
+	
+	
+}

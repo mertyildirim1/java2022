@@ -1,0 +1,49 @@
+package kodlama.io.Devs.webApi.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import kodlama.io.Devs.business.abstracts.ProgrammingLanguageService;
+import kodlama.io.Devs.entities.concretes.ProgrammingLanguage;
+
+@RestController
+@RequestMapping("/api/languages")
+public class LanguagesController {
+
+	ProgrammingLanguageService languageService;
+
+	@Autowired
+	public LanguagesController(ProgrammingLanguageService languageService) {
+		this.languageService = languageService;
+	}
+
+	@GetMapping("/getall")
+	public List<ProgrammingLanguage> getAll() {
+		return languageService.getAll();
+	}
+
+	@GetMapping("/{id}")
+	public ProgrammingLanguage getById(@PathVariable() int id) {
+		return languageService.getById(id);
+	}
+
+	@PostMapping
+	public void add(ProgrammingLanguage language) {
+		languageService.add(language);
+	}
+
+	@PostMapping("/{id}")
+	public void delete(@PathVariable() int id) {
+		languageService.delete(id);
+	}
+
+	public void update(ProgrammingLanguage language, int id) {
+		languageService.update(language, id);
+	}
+}

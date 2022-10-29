@@ -1,0 +1,95 @@
+package kodlama.io.Devs.dataAccess.concretes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kodlama.io.Devs.dataAccess.abstracts.IProgrammingLanguageRepository;
+import kodlama.io.Devs.entities.concretes.ProgrammingLanguage;
+
+@Service
+public class inMemoryProgrammingLanguageRepository implements IProgrammingLanguageRepository {
+
+	List<ProgrammingLanguage> languages;
+
+	@Autowired
+	public inMemoryProgrammingLanguageRepository() {
+		languages = new ArrayList<ProgrammingLanguage>();
+		languages.add(new ProgrammingLanguage(1, "C#"));
+		languages.add(new ProgrammingLanguage(2, "Java"));
+		languages.add(new ProgrammingLanguage(3, "Python"));
+	}
+
+	@Override
+	public List<ProgrammingLanguage> getAll() {
+		for (ProgrammingLanguage programmingLanguage : languages) {
+			programmingLanguage.getName();
+		}
+		return languages;
+	}
+
+	@Override
+	public ProgrammingLanguage getById(int id) {
+		for (ProgrammingLanguage programmingLanguage : languages) {
+			if (id == programmingLanguage.getId()) {
+				programmingLanguage.getName();
+			}
+		}
+		return languages.get(id);
+
+	}
+
+	@Override
+	public void add(ProgrammingLanguage language) {
+		try {
+			if (!isNameExist(language)) {
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void delete(int id) {
+		for (ProgrammingLanguage programmingLanguage : languages) {
+			if (id == programmingLanguage.getId()) {
+				languages.remove(programmingLanguage);
+			}
+		}
+	}
+
+	@Override
+	public void update(ProgrammingLanguage language) {
+		for (ProgrammingLanguage programmingLanguage : languages) {
+			if (language.getId() == programmingLanguage.getId()) {
+				programmingLanguage.setName(language.getName());
+			}
+		}
+
+	}
+
+	public boolean isNameExist(ProgrammingLanguage language) throws Exception {
+		boolean isThere = false;
+		for (ProgrammingLanguage programmingLanguage : languages) {
+			if (language.getName().equals(programmingLanguage.getName())) {
+				isThere = true;
+				break;
+			}
+		}
+		if (language.getName().isEmpty()) {
+			System.out.println("Programlama ismi boş geçilemez!");
+
+		} else if (!isThere) {
+			System.out.println("Programlama dili eklendi: " + languages.add(language));
+		} else {
+
+			throw new Exception("Programlama dili tekrar edemez");
+		}
+		return isThere;
+	}
+
+}

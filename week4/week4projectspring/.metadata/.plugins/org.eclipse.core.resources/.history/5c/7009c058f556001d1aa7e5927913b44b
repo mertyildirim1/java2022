@@ -1,0 +1,47 @@
+package kodlama.io.Devs.business.concretes;
+
+import java.util.List;
+
+import kodlama.io.Devs.business.abstracts.ProgrammingLanguageService;
+import kodlama.io.Devs.dataAccess.abstracts.IProgrammingLanguageRepository;
+import kodlama.io.Devs.entities.concretes.ProgrammingLanguage;
+
+public class ProgrammingLanguageManager implements ProgrammingLanguageService {
+
+	IProgrammingLanguageRepository languageRepository;
+
+	public ProgrammingLanguageManager(IProgrammingLanguageRepository languageRepository) {
+		this.languageRepository = languageRepository;
+	}
+
+	@Override
+	public List<ProgrammingLanguage> getAll() {
+		// TODO Auto-generated method stub
+		return languageRepository.getAll();
+	}
+
+	@Override
+	public ProgrammingLanguage getById(int id) {
+		// TODO Auto-generated method stub
+		return languageRepository.getById(id);
+	}
+
+	@Override
+	public void add(ProgrammingLanguage language) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void update(ProgrammingLanguage language, int id) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

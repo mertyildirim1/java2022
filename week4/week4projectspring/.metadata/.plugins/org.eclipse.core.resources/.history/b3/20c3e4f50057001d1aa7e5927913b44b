@@ -1,0 +1,52 @@
+package kodlama.io.Devs.business.concretes;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import kodlama.io.Devs.business.abstracts.ProgrammingLanguageService;
+import kodlama.io.Devs.dataAccess.abstracts.IProgrammingLanguageRepository;
+import kodlama.io.Devs.entities.concretes.ProgrammingLanguage;
+
+@Service
+public class ProgrammingLanguageManager implements ProgrammingLanguageService {
+
+	IProgrammingLanguageRepository languageRepository;
+
+	@Autowired
+	public ProgrammingLanguageManager(IProgrammingLanguageRepository languageRepository) {
+		this.languageRepository = languageRepository;
+	}
+
+	@Override
+	public List<ProgrammingLanguage> getAll() {
+		
+		return languageRepository.getAll();
+	}
+
+	@Override
+	public ProgrammingLanguage getById(int id) {
+		
+		return languageRepository.getById(id);
+	}
+
+	@Override
+	public void add(ProgrammingLanguage language) {
+		languageRepository.add(language);
+
+	}
+
+	@Override
+	public void delete(int id) {
+		languageRepository.delete(id);
+
+	}
+
+	@Override
+	public void update(ProgrammingLanguage language) {
+		languageRepository.update(language);
+
+	}
+
+}

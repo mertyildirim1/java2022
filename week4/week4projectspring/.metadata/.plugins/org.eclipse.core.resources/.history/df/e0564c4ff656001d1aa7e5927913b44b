@@ -1,0 +1,14 @@
+package kodlama.io.Devs.webApi.controllers;
+
+import kodlama.io.Devs.business.abstracts.ProgrammingLanguageService;
+
+@Ot
+public class LanguagesController {
+
+	ProgrammingLanguageService languageService;
+
+	public LanguageController(ProgrammingLanguageService languageService) {
+		this.languageService = languageService;
+	}
+
+}

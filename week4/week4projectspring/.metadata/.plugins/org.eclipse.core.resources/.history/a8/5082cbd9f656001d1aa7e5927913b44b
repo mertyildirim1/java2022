@@ -1,0 +1,20 @@
+package kodlama.io.Devs.webApi.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import kodlama.io.Devs.business.abstracts.ProgrammingLanguageService;
+
+@RestController
+@RequestMapping("/api/languages")
+public class LanguagesController {
+
+	ProgrammingLanguageService languageService;
+
+	@Autowired
+	public LanguagesController(ProgrammingLanguageService languageService) {
+		this.languageService = languageService;
+	}
+
+}
