@@ -1,0 +1,36 @@
+package kodlama.io.rentACar.entities.concretes;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Table(name = "brands") // bu sınıf tablo olarak db de brands tablosuna denk geliyor demek
+@Getter // setleri oluşturmak için
+@Setter // getleri oluşturmak için
+
+//@Data // get set yapıyo ve parametresiz ctor oluşturuyor
+
+@AllArgsConstructor // parametreli ctor oluşturuyor
+@NoArgsConstructor // parametresiz ctor oluşturur
+@Entity // sen bir veritabanı varlığısın
+public class Brand {
+
+	@Id // sen bir primaryKey'sin
+	@GeneratedValue(strategy = GenerationType.AUTO) // benzersiz - tekrar edemez
+	@Column(name = "id") // sen brands tablosundaki id kolonuna denk geliceksin
+	private int id;
+
+	
+	@Column(name = "first_name") // sen de name kolonuna denk geliceksin
+	private String name;
+
+}
+//ctrl + shift + o kullanılmayan importları kaldırır. -----> strategy = GenerationType.IDENTITY
